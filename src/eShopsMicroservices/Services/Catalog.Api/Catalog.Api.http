@@ -7,6 +7,8 @@ Accept: application/json
 
 POST {{Catalog.Api_HostAddress}}/products
 Accept: application/json
+Content-Type: application/json
+
 {
     "Name": "New Product A",
     "Category": ["c1", "c2"],
