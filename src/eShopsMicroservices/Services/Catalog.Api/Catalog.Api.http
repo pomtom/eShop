@@ -1,6 +1,16 @@
-@Catalog.Api_HostAddress = http://localhost:5105
+@Catalog.Api_HostAddress = https://localhost:5050
 
-GET {{Catalog.Api_HostAddress}}/weatherforecast/
+GET {{Catalog.Api_HostAddress}}/products
 Accept: application/json
 
 ###
+
+POST {{Catalog.Api_HostAddress}}/products
+Accept: application/json
+{
+    "Name": "New Product A",
+    "Category": ["c1", "c2"],
+    "Description": "Description Product A",
+    "ImageFile": "ImageFile Product A",
+    "Price": 199
+}
