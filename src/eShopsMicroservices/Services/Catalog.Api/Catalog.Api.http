@@ -10,9 +10,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "Name": "New Product A",
+    "Name": "New Product B",
     "Category": ["c1", "c2"],
-    "Description": "Description Product A",
-    "ImageFile": "ImageFile Product A",
-    "Price": 199
+    "Description": "Description Product B",
+    "ImageFile": "ImageFile Product B",
+    "Price": 56
 }
