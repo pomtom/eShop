@@ -1,18 +1,42 @@
 @Catalog.Api_HostAddress = https://localhost:5050
 
-GET {{Catalog.Api_HostAddress}}/products
-Accept: application/json
 
 ###
 
 POST {{Catalog.Api_HostAddress}}/products
 Accept: application/json
 Content-Type: application/json
-
 {
-    "Name": "New Product B",
+    "Name": "New Product A",
     "Category": ["c1", "c2"],
-    "Description": "Description Product B",
-    "ImageFile": "ImageFile Product B",
-    "Price": 56
+    "Description": "Description Product A",
+    "ImageFile": "ImageFile Product A",
+    "Price": 99
 }
+
+###
+
+GET {{Catalog.Api_HostAddress}}/products
+Accept: application/json
+
+###
+
+GET {{Catalog.Api_HostAddress}}/products/019416b2-ba1a-4f78-92a5-6d753bd0f574
+Accept: application/json
+
+###
+PUT {{Catalog.Api_HostAddress}}/products
+Accept: application/json
+Content-Type: application/json
+{
+    "id": "019416b2-ba1a-4f78-92a5-6d753bd0f574",
+    "Name": "Sample Prod",
+    "Category": ["c1", "c2","c3"],
+    "Description": "Sample Prod Description",
+    "ImageFile": "Sample Prod ImageFile",
+    "Price": 105
+}
+
+###
+DELETE {{Catalog.Api_HostAddress}}/products/019416b2-ba1a-4f78-92a5-6d753bd0f574
+Accept: application/json

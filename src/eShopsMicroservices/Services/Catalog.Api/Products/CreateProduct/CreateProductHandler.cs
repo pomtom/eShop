@@ -1,7 +1,6 @@
 ﻿using BuildingBlocks.CQRS;
 using Catalog.Api.Models;
 using Marten;
-using NetTopologySuite.IO;
 
 namespace Catalog.Api.Products.CreateProduct
 {
