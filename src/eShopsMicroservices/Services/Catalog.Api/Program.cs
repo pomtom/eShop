@@ -1,30 +1,51 @@
+using BuildingBlocks.Behaviors;
+using BuildingBlocks.Exceptions.Handler;
 using Carter;
+using Catalog.Api.Data;
+using FluentValidation;
+using HealthChecks.UI.Client;
 using Marten;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddCarter();
-
 var assembly = typeof(Program).Assembly;
 builder.Services.AddMediatR(config =>
 {
-    config.RegisterServicesFromAssemblies(assembly);
+    config.RegisterServicesFromAssembly(assembly);
+    config.AddOpenBehavior(typeof(ValidationBehavior<,>));
+    config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
+builder.Services.AddValidatorsFromAssembly(assembly);
 
-builder.Services.AddMarten(option =>
+builder.Services.AddCarter();
+
+builder.Services.AddMarten(opts =>
 {
-    option.Connection(builder.Configuration.GetConnectionString("CatalogConnection")!);
+    opts.Connection(builder.Configuration.GetConnectionString("CatalogConnection")!);
 }).UseLightweightSessions();
 
-//builder.Services.AddHealthChecks()
-//    .AddNpgSql(builder.Configuration.GetConnectionString("CatalogConnection")!);
+if (builder.Environment.IsDevelopment())
+    builder.Services.InitializeMartenWith<CatalogInitialData>();
+
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
+builder.Services.AddHealthChecks()
+    .AddNpgSql(builder.Configuration.GetConnectionString("CatalogConnection")!);
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
 app.MapCarter();
 
-app.UseHttpsRedirection();
+app.UseExceptionHandler(options => { });
+
+app.UseHealthChecks("/health",
+    new HealthCheckOptions
+    {
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+    });
 
 
 app.Run();

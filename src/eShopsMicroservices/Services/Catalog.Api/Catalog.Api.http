@@ -1,4 +1,4 @@
-@Catalog.Api_HostAddress = https://localhost:5050
+@Catalog.Api_HostAddress = https://localhost:6060
 
 
 ###
@@ -21,7 +21,7 @@ Accept: application/json
 
 ###
 
-GET {{Catalog.Api_HostAddress}}/products/019416b2-ba1a-4f78-92a5-6d753bd0f574
+GET {{Catalog.Api_HostAddress}}/products/5334c996-8457-4cf0-815c-ed2b77c4ff62
 Accept: application/json
 
 ###
@@ -38,5 +38,5 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{Catalog.Api_HostAddress}}/products/019416b2-ba1a-4f78-92a5-6d753bd0f574
+DELETE {{Catalog.Api_HostAddress}}/products/5334c996-8457-4cf0-815c-ed2b77c4ff6
 Accept: application/json
