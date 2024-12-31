@@ -1,6 +1,6 @@
 ﻿using Catalog.Api.Models;
-using Marten.Schema;
 using Marten;
+using Marten.Schema;
 
 namespace Catalog.Api.Data
 {
